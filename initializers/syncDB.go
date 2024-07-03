@@ -6,7 +6,7 @@ import (
 )
 
 func SyncDatabase() {
-	err := DB.AutoMigrate(&models.User{})
+	err := DB.AutoMigrate(&models.User{}, &models.Category{}, &models.Journal{})
 
 	if err != nil {
 		log.Fatal("Failed to migrate model", err)
