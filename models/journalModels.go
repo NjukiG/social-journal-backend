@@ -5,7 +5,7 @@ import "gorm.io/gorm"
 type Role string
 
 const (
-	RoleMember Role = "Author"
+	RoleAuthor Role = "Author"
 	RoleAdmin  Role = "Admin"
 )
 
@@ -17,4 +17,10 @@ type User struct {
 	Email     string `gorm:"unique;not null"`
 	Password  string `gorm:"not null"`
 	Role      Role   `gorm:"not null"`
+}
+
+// Category struct/ object
+type Category struct {
+	gorm.Model
+	Title string `gorm:"not null"`
 }
