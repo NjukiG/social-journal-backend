@@ -35,6 +35,7 @@ func main() {
 
 	routes.RegisterUserRoutes(r)
 	routes.RegisterCategoryRoutes(r)
+	routes.RegisterJournalRoutes(r)
 
 	r.Run()
 }

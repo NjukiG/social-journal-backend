@@ -33,7 +33,7 @@ type Journal struct {
 	gorm.Model
 	Title      string `gorm:"not null"`
 	Content    string `gorm:"not null"`
-	ImageURL   string
+	ImageUrl   string
 	UserID     uint
 	CategoryID uint
 }
