@@ -44,9 +44,17 @@ func CreateCategory(c *gin.Context) {
 // Get all categories
 
 func GetAllCategories(c *gin.Context) {
+	// Get owner of the category
+	userID, exists := c.Get("user")
+
+	if !exists {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "User not authenticated"})
+		return
+	}
+
 	var categories []models.Category
 
-	result := initializers.DB.Preload("Journals").Find(&categories)
+	result := initializers.DB.Preload("Journals").Where("user_id = ?", userID.(models.User).ID).Find(&categories)
 
 	if result.Error != nil {
 		c.Status(400)
@@ -60,12 +68,19 @@ func GetAllCategories(c *gin.Context) {
 
 // Get category by ID
 func GetCategoryByID(c *gin.Context) {
+	// Get owner of the category
+	userID, exists := c.Get("user")
+
+	if !exists {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "User not authenticated"})
+		return
+	}
 	// Get ID of the category
 	id := c.Param("id")
 
 	var category models.Category
 
-	result := initializers.DB.Preload("Journals").First(&category, id)
+	result := initializers.DB.Preload("Journals").Where("user_id = ?", userID.(models.User).ID).First(&category, id)
 
 	if result.Error != nil {
 		c.Status(400)
