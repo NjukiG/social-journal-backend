@@ -34,6 +34,7 @@ func main() {
 	// r.Use(cors.New(config))
 
 	routes.RegisterUserRoutes(r)
+	routes.RegisterCategoryRoutes(r)
 
 	r.Run()
 }

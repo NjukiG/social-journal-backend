@@ -141,6 +141,6 @@ func DeleteCategory(c *gin.Context) {
 	// Respond
 	c.Status(http.StatusNoContent)
 	c.JSON(200, gin.H{
-		"post": "A category was deleted...",
+		"message": "A category was deleted...",
 	})
 }
