@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"social-journal/initializers"
 	"social-journal/routes"
-	// "time"
+	"time"
 
-	// "github.com/gin-contrib/cors"
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
@@ -22,16 +22,16 @@ func main() {
 	r := gin.Default()
 
 	// CORS configuration
-	// config := cors.Config{
-	// 	AllowOrigins:     []string{"http://localhost:4000"},
-	// 	AllowMethods:     []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
-	// 	AllowHeaders:     []string{"Origin", "Content-Type", "Authorization"},
-	// 	ExposeHeaders:    []string{"Content-Length"},
-	// 	AllowCredentials: true,
-	// 	MaxAge:           12 * time.Hour,
-	// }
+	config := cors.Config{
+		AllowOrigins:     []string{"http://localhost:4000"},
+		AllowMethods:     []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+		AllowHeaders:     []string{"Origin", "Content-Type", "Authorization"},
+		ExposeHeaders:    []string{"Content-Length"},
+		AllowCredentials: true,
+		MaxAge:           12 * time.Hour,
+	}
 
-	// r.Use(cors.New(config))
+	r.Use(cors.New(config))
 
 	routes.RegisterUserRoutes(r)
 	routes.RegisterCategoryRoutes(r)
